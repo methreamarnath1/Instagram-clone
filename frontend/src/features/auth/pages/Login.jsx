@@ -1,24 +1,14 @@
 import React from "react";
 import "../style/form.scss";
 import { Link } from "react-router";
-import axios from "axios";
+import {login } from "../services/auth.api";
 
 const Login = () => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   async function handleSubmit(e) {
     e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:3000/api/auth/login", {
-        username,
-        password,
-      },{
-        withCredentials: true
-      });
-      console.log(res.data);
-    } catch (err) {
-      console.log(err);
-    }
+    await login(username, password);
   }
   return (
     <main>
@@ -43,9 +33,7 @@ const Login = () => {
             placeholder="Enter your password"
             value={password}
           />
-          <button type="submit"   >
-            Login
-          </button>
+          <button type="submit">Login</button>
         </form>
         <p>
           Don't have an account?{" "}
