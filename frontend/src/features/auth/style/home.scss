@@ -1,0 +1,579 @@
+// Variables
+$primary-color: #0095f6;
+$secondary-color: #262626;
+$border-color: #dbdbdb;
+$light-bg: #fafafa;
+$white: #ffffff;
+$text-primary: #262626;
+$text-secondary: #8e8e8e;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Global Styles
+.home-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $light-bg;
+}
+
+// Navbar
+.navbar {
+  background-color: $white;
+  border-bottom: 1px solid $border-color;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 60px;
+  }
+
+  .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: $text-primary;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    letter-spacing: -1px;
+  }
+
+  .navbar-right {
+    @include flex-between;
+    gap: 30px;
+  }
+
+  .search-box {
+    input {
+      background-color: $light-bg;
+      border: 1px solid $border-color;
+      border-radius: 20px;
+      padding: 8px 16px;
+      width: 220px;
+      font-size: 14px;
+      color: $text-primary;
+
+      &::placeholder {
+        color: $text-secondary;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+      }
+    }
+  }
+
+  .user-profile {
+    @include flex-center;
+    gap: 10px;
+
+    .profile-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+      border: 2px solid $border-color;
+    }
+
+    .username {
+      font-size: 14px;
+      color: $text_primary;
+      font-weight: 500;
+      max-width: 100px;
+      whites-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .logout-btn {
+    background-color: $primary-color;
+    color: $white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #0a8cdc;
+    }
+  }
+}
+
+// Home Content Layout
+.home-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+// Sidebar
+.sidebar {
+  width: 240px;
+  background-color: $white;
+  border-right: 1px solid $border-color;
+  padding: 16px 0;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+
+  &.closed {
+    transform: translateX(-100%);
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 16px;
+  }
+
+  .nav-item {
+    @include flex-center;
+    gap: 16px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: $text-primary;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+    font-size: 16px;
+
+    .nav-icon {
+      font-size: 20px;
+    }
+
+    .nav-label {
+      font-weight: 500;
+    }
+
+    &:hover {
+      background-color: $light-bg;
+    }
+
+    &.active {
+      background-color: #f0f0f0;
+      color: $primary-color;
+      font-weight: 600;
+    }
+  }
+}
+
+// Main Feed
+.feed {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: $light-bg;
+
+  .feed-header {
+    @include flex-between;
+    margin-bottom: 30px;
+    background-color: $white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid $border-color;
+
+    h2 {
+      font-size: 24px;
+      color: $text-primary;
+      margin: 0;
+    }
+
+    .create-post-btn {
+      background-color: $primary-color;
+      color: $white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #0a8cdc;
+      }
+    }
+  }
+
+  .posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .post {
+    background-color: $white;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    overflow: hidden;
+
+    .post-header {
+      @include flex-between;
+      padding: 16px;
+      border-bottom: 1px solid $border-color;
+    }
+
+    .post-author {
+      @include flex-center;
+      gap: 12px;
+
+      .author-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .author-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .author-name {
+          font-weight: 600;
+          color: $text-primary;
+          font-size: 14px;
+        }
+
+        .timestamp {
+          color: $text-secondary;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .post-image {
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+      background-color: $secondary-color;
+    }
+
+    .post-actions {
+      @include flex-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid $border-color;
+
+      .action-buttons {
+        @include flex-center;
+        gap: 16px;
+
+        button {
+          background: none;
+          border: none;
+          font-size: 20px;
+          cursor: pointer;
+          transition: opacity 0.2s;
+
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+
+    .post-stats {
+      padding: 12px 16px;
+      border-bottom: 1px solid $border-color;
+      font-size: 14px;
+      font-weight: 600;
+      color: $text-primary;
+    }
+
+    .post-caption {
+      padding: 12px 16px;
+      color: $text-primary;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .post-comments-preview {
+      padding: 8px 16px;
+      color: $text-secondary;
+      font-size: 13px;
+      cursor: pointer;
+
+      &:hover {
+        color: $text-primary;
+      }
+    }
+  }
+
+  .empty-state {
+    @include flex-center;
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 20px;
+    color: $text-secondary;
+
+    .empty-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    h3 {
+      font-size: 24px;
+      color: $text-primary;
+      margin: 0 0 10px 0;
+    }
+
+    p {
+      font-size: 16px;
+      margin: 0;
+    }
+  }
+}
+
+// Suggestions Panel
+.suggestions-panel {
+  width: 280px;
+  background-color: $white;
+  border-left: 1px solid $border-color;
+  padding: 20px;
+  overflow-y: auto;
+
+  .suggestions-header {
+    @include flex-between;
+    margin-bottom: 20px;
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: $text-primary;
+      margin: 0;
+    }
+
+    a {
+      font-size: 12px;
+      color: $primary-color;
+      text-decoration: none;
+      font-weight: 600;
+
+      &:hover {
+        color: $text-primary;
+      }
+    }
+  }
+
+  .suggestions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .suggestion-item {
+    @include flex-between;
+    padding: 12px;
+    background-color: $light-bg;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+
+    .suggestion-avatar {
+      width: 36px;
+      height: 36px;
+      @include flex-center;
+      border-radius: 50%;
+      background-color: $white;
+      font-size: 18px;
+    }
+
+    .suggestion-info {
+      flex: 1;
+      margin-left: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+
+      .username {
+        font-weight: 600;
+        color: $text-primary;
+        font-size: 14px;
+        margin: 0;
+      }
+
+      .suggestion-label {
+        color: $text-secondary;
+        font-size: 12px;
+      }
+    }
+
+    .follow-btn {
+      background-color: $primary-color;
+      color: $white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 12px;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #0a8cdc;
+      }
+    }
+  }
+}
+
+// Mobile Sidebar Toggle
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 50;
+  background-color: $primary-color;
+  color: $white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+// Error Container
+.error-container {
+  @include flex-center;
+  height: 100vh;
+  background-color: $light-bg;
+  color: $text-secondary;
+  font-size: 18px;
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .home-content {
+    flex-wrap: wrap;
+  }
+
+  .suggestions-panel {
+    display: none;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    height: calc(100vh - 60px);
+    z-index: 40;
+    background-color: $white;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+
+    &.closed {
+      transform: translateX(-100%);
+    }
+  }
+
+  .sidebar-toggle {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 10px;
+
+    .navbar-content {
+      height: 50px;
+    }
+
+    .logo {
+      font-size: 18px;
+    }
+
+    .navbar-right {
+      gap: 15px;
+    }
+
+    .search-box input {
+      width: 150px;
+      font-size: 12px;
+    }
+
+    .user-profile .username {
+      display: none;
+    }
+
+    .logout-btn {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+  }
+
+  .feed {
+    padding: 10px;
+
+    .feed-header {
+      flex-direction: column;
+      gap: 15px;
+
+      h2 {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .sidebar {
+    width: 100%;
+    top: 50px;
+    border-right: none;
+    border-bottom: 1px solid $border-color;
+    height: auto;
+    padding: 8px 0;
+
+    .nav-item {
+      padding: 8px 12px;
+    }
+  }
+}
+
+// Scrollbar Styling
+.feed::-webkit-scrollbar,
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.feed::-webkit-scrollbar-track,
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.feed::-webkit-scrollbar-thumb,
+.sidebar::-webkit-scrollbar-thumb {
+  background: $border-color;
+  border-radius: 4px;
+
+  &:hover {
+    background: $text-secondary;
+  }
+}

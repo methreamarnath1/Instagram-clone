@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "../style/form.scss";
-import { Link } from "react-router";
-import {login } from "../services/auth.api";
-
+import { Link, useNavigate } from "react-router";
+import { useAuth } from "../hooks/useAuth.jsx";
+ 
 const Login = () => {
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const { handleLogin ,loading} = useAuth();
+  const navigate =useNavigate()
+  
+  if(loading){
+    return (<h1>loading...</h1>)
+  }
+ 
+   
+
   async function handleSubmit(e) {
     e.preventDefault();
-    await login(username, password);
+    await handleLogin(username, password) 
+     if(username){
+       navigate("/");
+     }
+      
+    
   }
   return (
     <main>

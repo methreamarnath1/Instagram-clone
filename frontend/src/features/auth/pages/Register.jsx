@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
  import "../style/form.scss";
-import { register } from "../services/auth.api";
+import { register } from "../services/auth.api.jsx";
 const Register = () => {
   const [username, setUsername] = React.useState("");
   const [email, setEmail] = React.useState("");

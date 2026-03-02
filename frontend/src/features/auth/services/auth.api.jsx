@@ -44,7 +44,7 @@ async function login(username, password) {
 
 export { register, login };
 
-export  async function getMe() {
+export async function getMe() {
   try{
     const response = await api.get("/get-me", {
       withCredentials: true,
