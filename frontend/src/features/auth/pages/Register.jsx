@@ -1,14 +1,21 @@
 import React from "react";
-import { Link } from "react-router";
- import "../style/form.scss";
+import { Link, useNavigate } from "react-router";
+import "../style/form.scss";
 import { register } from "../services/auth.api.jsx";
 const Register = () => {
   const [username, setUsername] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
-        await register(username, email, password);
+    try {
+      await register(username, email, password);
+      navigate("/");
+    } catch (err) {
+      console.error("Registration failed:", err);
+      alert(err.response?.data?.message || "Registration failed");
+    }
   }
 
   return (

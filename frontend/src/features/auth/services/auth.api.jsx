@@ -19,8 +19,10 @@ async function register(username, email, password) {
       },
     );
     console.log(res.data);
+    return res.data;
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    throw err;
   }
 }
 
@@ -37,15 +39,17 @@ async function login(username, password) {
       },
     );
     console.log(res.data);
+    return res.data;
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    throw err;
   }
 }
 
 export { register, login };
 
 export async function getMe() {
-  try{
+  try {
     const response = await api.get("/get-me", {
       withCredentials: true,
     });
@@ -54,6 +58,5 @@ export async function getMe() {
   } catch (err) {
     console.log(err);
     throw err;
-  } 
-   
+  }
 }
