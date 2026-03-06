@@ -1,0 +1,16 @@
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-inline: 1rem;
+  padding-top: 0.5rem;
+}
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+  color: whitesmoke;
+  font-weight: 600;
+}
