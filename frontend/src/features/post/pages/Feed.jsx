@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import CreatePost from "./CreatePost";
 import Nav from "../../shared/components/Nav";
 const Feed = () => {
-  const { loading, handileGetFeed, feed } = usePost();
+  const { loading, handileGetFeed, feed, handleLikePost, handleUnLikePost } = usePost();
   useEffect(() => {
     handileGetFeed();
   }, []);
@@ -25,7 +25,13 @@ const Feed = () => {
       <div className="feed">
         <div className="posts">
           {feed.map((post) => (
-            <Post key={post._id} post={post} />
+            <Post 
+              key={post._id} 
+              post={post} 
+              handleLikePost={handleLikePost} 
+              handleUnLikePost={handleUnLikePost} 
+              loading={loading} 
+            />
           ))}
         </div>
       </div>

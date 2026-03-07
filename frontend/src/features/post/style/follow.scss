@@ -1,0 +1,159 @@
+.follow-sidebar {
+    width: 100%;
+    max-width: 320px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 100vh;
+    padding: 16px;
+
+    .follow-profile-card {
+        text-align: center;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #e1e8ed;
+        margin-bottom: 16px;
+
+        .follow-profile-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 12px;
+        }
+
+        .follow-profile-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 8px 0;
+            color: #000;
+        }
+
+        .follow-profile-username {
+            font-size: 14px;
+            color: #657786;
+            margin: 4px 0 12px;
+        }
+
+        .follow-stats {
+            display: flex;
+            justify-content: space-around;
+            gap: 16px;
+
+            .follow-stat-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .follow-stat-number {
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #000;
+                }
+
+                .follow-stat-label {
+                    font-size: 12px;
+                    color: #657786;
+                    margin-top: 4px;
+                }
+            }
+        }
+    }
+
+    .follow-followers,
+    .follow-following,
+    .follow-suggestions {
+        margin-bottom: 24px;
+
+        .follow-section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #000;
+        }
+
+        .follow-users-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            .follow-user-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px;
+                border-radius: 8px;
+                background-color: #f7f9fa;
+                transition: background-color 0.2s;
+
+                &:hover {
+                    background-color: #f0f5fa;
+                }
+
+                .follow-user-avatar {
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    flex-shrink: 0;
+                }
+
+                .follow-user-info {
+                    flex: 1;
+                    min-width: 0;
+
+                    .follow-user-name {
+                        font-size: 14px;
+                        font-weight: 700;
+                        margin: 0;
+                        color: #000;
+                    }
+
+                    .follow-user-handle {
+                        font-size: 12px;
+                        color: #657786;
+                        margin: 4px 0 0;
+                    }
+                }
+
+                .follow-btn,
+                .unfollow-btn {
+                    padding: 6px 16px;
+                    border: none;
+                    border-radius: 20px;
+                    font-size: 14px;
+                    font-weight: 700;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                    white-space: nowrap;
+                    flex-shrink: 0;
+                }
+
+                .follow-btn {
+                    background-color: #1da1f2;
+                    color: #fff;
+
+                    &:hover {
+                        background-color: #1a91da;
+                    }
+                }
+
+                .unfollow-btn {
+                    background-color: transparent;
+                    color: #1da1f2;
+                    border: 1px solid #1da1f2;
+
+                    &:hover {
+                        background-color: rgba(29, 161, 242, 0.1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .follow-sidebar {
+        max-width: 100%;
+    }
+}
