@@ -22,6 +22,7 @@ postRouter.post(
  * @route GET /api/posts/
  * @desc get all posts
  * @access protected
+ * it will give me the the feed data that all the post present in the platform
  */
 postRouter.get("/", identifyUser, postController.getPostController);
 
@@ -63,4 +64,16 @@ postRouter.post(
  * @access PRIVATE
  */
 postRouter.get("/feed", identifyUser, postController.getFeedController);
+
+/**
+ * @route GET  /api/posts/userPosts/:userId
+ * @description get all the post created in the user
+ * @access PRIVATE
+ */
+postRouter.get(
+  "/userPosts/:userId",
+  identifyUser,
+  postController.getUserPostController,
+);
+
 module.exports = postRouter;

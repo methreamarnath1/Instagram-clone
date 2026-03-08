@@ -131,7 +131,22 @@ async function getFeedController(req, res) {
   });
 }
 
+// this controller is used to get the post of a specific user by the user id
+async function getUserPostController(req, res) {
+  const { userId } = req.params;
+  // Assuming you have a Post model or database query
+  const posts = await postModel.find({ userId: userId });
+  const userPostData = posts.map((post) => ({
+    imageUrl: post.imageUrl,
+  }));
+  res.status(200).json({
+    message: "user post fetched successfully",
+    userPostData,
+  });
+}
+
 module.exports = {
+  getUserPostController,
   createPostController,
   getPostController,
   getPostDetailsController,
